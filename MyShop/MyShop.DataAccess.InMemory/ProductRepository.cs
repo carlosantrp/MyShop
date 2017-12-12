@@ -26,6 +26,13 @@ namespace MyShop.DataAccess.InMemory
 
 
         }
+
+        public Product Find(string Id)
+        {
+            return products.Find(x => x.ID == Id);
+             
+        }
+
         public void Commit()
         {
             cache["products"] = products;
