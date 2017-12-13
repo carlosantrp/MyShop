@@ -332,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ProductImages\" />
     <Folder Include="Views\ProductCategory\" />
   </ItemGroup>
   <ItemGroup>
@@ -348,6 +349,10 @@
     <ProjectReference Include="..\MyShop.DataAccess.InMemory\MyShop.DataAccess.InMemory.csproj">
       <Project>{52d00cfb-8dea-4c58-8694-bac974a1748d}</Project>
       <Name>MyShop.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyShop.DataAccess.SQL\MyShop.DataAccess.SQL.csproj">
+      <Project>{455593F4-7B40-477C-B19A-14F6BBB8583F}</Project>
+      <Name>MyShop.DataAccess.SQL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

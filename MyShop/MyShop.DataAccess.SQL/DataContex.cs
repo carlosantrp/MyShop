@@ -10,15 +10,16 @@ namespace MyShop.DataAccess.SQL
 {
     public class DataContex : DbContext
     {
+
         public DataContex()
+            :base("DefaultConnection")
+            {
+            }
+        DbSet<Product> Products { get; set; }
+        DbSet<ProductCategory> ProductCategories { get; set; }
 
-            : base("DefaultConnection")
-        {
-
-        }
-
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-
-    }
+        //comandos migrations
+        //Enable-Migrations
+        //Add-Migration Initial
+    }   //Update-Database
 }
