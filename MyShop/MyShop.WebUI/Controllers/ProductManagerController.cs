@@ -79,9 +79,9 @@ namespace MyShop.WebUI.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Product product, string Id, HttpPostedFileBase file)
+        public ActionResult Edit(Product product, HttpPostedFileBase file)
         {
-            Product productToEdit = contex.Find(Id);
+            Product productToEdit = contex.Find(product.Id);
 
             if (productToEdit == null)
             {
@@ -97,7 +97,7 @@ namespace MyShop.WebUI.Controllers
                 if (file != null)
                 {
                     productToEdit.Image = product.Id + Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("//Contet//ProductImages//") + productToEdit.Image);
+                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + productToEdit.Image);
                 }
 
                 productToEdit.Category = product.Category;
