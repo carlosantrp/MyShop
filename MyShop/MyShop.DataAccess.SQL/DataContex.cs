@@ -17,6 +17,8 @@ namespace MyShop.DataAccess.SQL
             }
         DbSet<Product> Products { get; set; }
         DbSet<ProductCategory> ProductCategories { get; set; }
+        DbSet<BasketItem> BasketItems { get; set; }
+        DbSet<Basket> Baskets { get; set; }
 
         //comandos migrations
         //Enable-Migrations
