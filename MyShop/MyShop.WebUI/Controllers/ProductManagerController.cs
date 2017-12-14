@@ -17,11 +17,13 @@ namespace MyShop.WebUI.Controllers
         IRepository<Product> contex;
         IRepository<ProductCategory> ProductCategories;
 
-        public ProductManagerController(IRepository<Product> productContex, IRepository<ProductCategory> productCategoryContex)
+        public ProductManagerController(IRepository<Product> ProductContex, IRepository<ProductCategory> ProductCategoriesContex)
         {
-            this.contex = productContex;
-            this.ProductCategories = productCategoryContex;
+
+            this.contex = ProductContex;
+            this.ProductCategories = ProductCategoriesContex;
         }
+
         // GET: ProductManager
         public ActionResult Index()
         {
@@ -54,6 +56,7 @@ namespace MyShop.WebUI.Controllers
                 {
                     product.Image = product.Id + Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);
+
                 }
 
                 contex.Insert(product);

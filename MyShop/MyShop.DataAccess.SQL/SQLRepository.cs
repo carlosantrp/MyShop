@@ -11,8 +11,9 @@ namespace MyShop.DataAccess.SQL
 {
     public class SQLRepository<T> : IRepository<T> where T : BaseEntity
     {
-        internal DataContex contex;
-        internal DbSet<T> dbSet;
+
+        DataContex contex;
+        DbSet<T> dbSet;
 
         public SQLRepository(DataContex contex)
         {
@@ -32,19 +33,19 @@ namespace MyShop.DataAccess.SQL
 
         public void Delete(string Id)
         {
-            var t = Find(Id);
+            T t = Find(Id);
+
             if (contex.Entry(t).State == EntityState.Detached)
                 dbSet.Attach(t);
 
             dbSet.Remove(t);
-
-            
-
         }
 
         public T Find(string Id)
         {
             return dbSet.Find(Id);
+
+            
         }
 
         public void Insert(T t)

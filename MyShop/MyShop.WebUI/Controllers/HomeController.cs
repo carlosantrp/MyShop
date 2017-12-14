@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyShop.Core.Contracts;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -20,10 +21,27 @@ namespace MyShop.WebUI.Controllers
             this.ProductCategoryContex = ProductCategoryContex;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string Category = null)
         {
-            List<Product> products = ProductContex.Collection().ToList();
-            return View(products);
+
+            List<Product> Products;
+            List<ProductCategory> ProductsCategories = ProductCategoryContex.Collection().ToList();
+
+            if (Category == null)
+            {
+                Products = ProductContex.Collection().ToList();
+            }
+            else
+            {
+                Products = ProductContex.Collection().Where(x => x.Category == Category).ToList();
+            }
+
+            ProductListViewModel model = new ProductListViewModel();
+
+            model.Products = Products;
+            model.ProductCategories = ProductsCategories;
+
+            return View(model);
         }
 
         public ActionResult Details(string Id)
