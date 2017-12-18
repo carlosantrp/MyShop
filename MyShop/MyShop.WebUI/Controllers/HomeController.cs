@@ -21,9 +21,8 @@ namespace MyShop.WebUI.Controllers
             this.ProductCategoryContex = ProductCategoryContex;
         }
 
-        public ActionResult Index(string Category = null)
+        public ActionResult Index(int? Sort,string Category = null)
         {
-
             List<Product> Products;
             List<ProductCategory> ProductsCategories = ProductCategoryContex.Collection().ToList();
 
@@ -34,6 +33,25 @@ namespace MyShop.WebUI.Controllers
             else
             {
                 Products = ProductContex.Collection().Where(x => x.Category == Category).ToList();
+            }
+            switch (Sort)
+            {
+                case 1:
+                    Products =Products.OrderBy(x => x.Name).ToList();
+                    break;
+
+                case 2:
+                    Products = Products.OrderByDescending(x => x.Name).ToList();
+                    break;
+                case 3:
+                    Products = Products.OrderByDescending(x => x.Price).ToList();
+                    break;
+                case 4:
+                    Products = Products.OrderBy(x => x.Price).ToList();
+                    break;
+
+                default:
+                    break;
             }
 
             ProductListViewModel model = new ProductListViewModel();
@@ -70,5 +88,7 @@ namespace MyShop.WebUI.Controllers
 
             return View();
         }
+
+
     }
 }
